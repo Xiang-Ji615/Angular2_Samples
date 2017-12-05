@@ -17,7 +17,7 @@ export class AppComponent {
   onClick(){
     this.modal.alert()
     .title('Hello World')
-    .body('In Angular')
+    .body('By Jasper')
     .open();
   }
 }
