@@ -1,20 +1,26 @@
 import { Component, OnInit } from "@angular/core";
 import { Http } from "@angular/http";
 import * as _ from "lodash";
+import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
+import { appService } from './user.service';
+import { AppComponent } from './app.component';
+
 
 @Component({
     selector: 'datatable',
     templateUrl: 'customdatatable.component.html'
 })
-export class ServerComponent implements OnInit {
+export class ServerComponent implements OnInit  {
 public data: any[];
-    public filterQuery = "";
+    public filterQuery = "JJ test 123";
     public rowsOnPage = 10;
     public activePage = 1;
     public sortBy = "email";
     public sortOrder = "asc";
     public itemsTotal = 0;
-    constructor(private http: Http) {
+    constructor(private http: Http, public _appService: appService) {
+
     }
 
     
@@ -23,10 +29,10 @@ public data: any[];
     }
 
     public loadData() {
+        console.log(this.filterQuery);
         this.http.get("http://localhost:8080/Rest/V1/GetUsers")
             .subscribe((data) => {
                 setTimeout(() => {
-
                     this.data = _.orderBy(data.json(), this.sortBy, [this.sortOrder]);
                     this.data = _.slice(this.data, this.activePage, this.activePage + this.rowsOnPage);
                     this.itemsTotal = data.json().length;
@@ -42,10 +48,14 @@ public data: any[];
     }
 
     public remove(item) {
-        let index = this.data.indexOf(item);
-        if (index > -1) {
-            this.data.splice(index, 1);
-        }
+        // let index = this.data.indexOf(item);
+        // if (index > -1) {
+        //     this.data.splice(index, 1);
+        // }
+        this._appService.name = item.email;
+        console.log(this._appService);
+        this._appService.closeModal();
+    
     }
     public onSortOrder(event) {
         this.loadData();

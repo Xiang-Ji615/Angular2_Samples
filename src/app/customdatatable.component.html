@@ -1,9 +1,5 @@
 
     <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-        
-                <div class="page-header">
-                </div>
-        
                 <div class="panel panel-default">
                     <div class="panel-heading">User information</div>
         
@@ -26,11 +22,17 @@
                                     <mfDefaultSorter [by]="sortByWordLength">City</mfDefaultSorter>
                                 </th>
                             </tr>
+                            <tr>
+                                <th colspan="5">
+                                        Search
+                                        <input class="form-control" [(ngModel)]="filterQuery"/>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of mf.data">
                                 <td>
-                                    <button (click)="remove(item)" class="btn btn-danger">x</button>
+                                    <button (click)="remove(item)" class="btn btn-success">Select</button>
                                 </td>
                                 <td>{{item.name}}</td>
                                 <td>{{item.email}}</td>
@@ -48,4 +50,5 @@
                     </table>
                 </div>
             </div>
+
         

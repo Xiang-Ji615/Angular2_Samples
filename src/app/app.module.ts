@@ -9,6 +9,8 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
 import { HttpModule } from "@angular/http";
 import { ServerComponent } from './customdatatable.component';
+import { FormsModule } from '@angular/forms';
+import { appService } from './user.service';
 
 
 @NgModule({
@@ -20,9 +22,10 @@ import { ServerComponent } from './customdatatable.component';
     BrowserModule, NG2DataTableModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ appService ],
   bootstrap: [AppComponent],
   entryComponents: [ ServerComponent ]
 })
