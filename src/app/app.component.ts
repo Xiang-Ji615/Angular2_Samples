@@ -1,6 +1,7 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { Overlay } from 'ngx-modialog';
-import { Modal } from 'ngx-modialog/plugins/bootstrap';
+import { Overlay, overlayConfigFactory } from 'ngx-modialog';
+import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
+import { ServerComponent } from './customdatatable.component';
 
 
 @Component({
@@ -15,9 +16,6 @@ export class AppComponent {
   }
 
   onClick(){
-    this.modal.alert()
-    .title('Hello World')
-    .body('By Jasper')
-    .open();
+    this.modal.open(ServerComponent);
   }
 }

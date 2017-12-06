@@ -7,16 +7,23 @@ import {NG2DataTableModule} from "angular2-datatable-pagination";
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
+import { HttpModule } from "@angular/http";
+import { ServerComponent } from './customdatatable.component';
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ServerComponent
   ],
   imports: [
     BrowserModule, NG2DataTableModule,
     ModalModule.forRoot(),
-    BootstrapModalModule
+    BootstrapModalModule,
+    HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ServerComponent ]
 })
 export class AppModule { }
