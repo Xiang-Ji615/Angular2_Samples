@@ -19,17 +19,11 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
-        "datatable/dataTables.bootstrap.min.css",
-        "datatable/responsive.dataTables.min.css",
-        "datatable/dataTables.responsive.css"
+        "styles.css"
+      
       ],
       "scripts": [
-        "datatable/jquery.min.js",
-        "datatable/bootstrap.min.js", 
-        "datatable/jquery.dataTables.min.js",
-        "datatable/dataTables.bootstrap.min.js",
-        "datatable/dataTables.responsive.min.js"
+      
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -7,6 +7,7 @@ import { appService } from './user.service';
 import { AppComponent } from './app.component';
 import * as $ from 'jquery';
 import 'datatables.net';
+import 'datatables.net-responsive';
 
 
 @Component({
@@ -31,12 +32,12 @@ public data: any[];
     }
 
     ngAfterViewInit() {
-        $('#table1').DataTable({
-            "responsive":true,
-            // "scrollX":true,
-            "searching": false, 
-            "paging": false
-        });
+        // $('#table1').DataTable({
+        //     responsive: true,
+        //     // "scrollX":true,
+        //     "searching": false, 
+        //     "paging": false
+        // });
      }
 
 
@@ -63,7 +64,7 @@ public data: any[];
         // if (index > -1) {
         //     this.data.splice(index, 1);
         // }
-        this._appService.name = item.email;
+        this._appService.name = item.name;
         console.log(this._appService);
         this._appService.closeModal();
     
