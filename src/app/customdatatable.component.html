@@ -1,24 +1,24 @@
-
+<!-- div style="overflow-x: auto; overflow-y: auto;" -->
     <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">User information</div>
         
-                    <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+                    <table class="table table-bordered" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
                         [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder" [mfActivePage]="activePage" (mfOnPageChange)="onPageChange($event)"
-                        [mfIsServerPagination]="true" [(mfAmountOfRows)]="itemsTotal" (mfSortOrderChange)="onSortOrder($event)">
+                        [mfIsServerPagination]="true" [(mfAmountOfRows)]="itemsTotal" (mfSortOrderChange)="onSortOrder($event)" id="table1">
                         <thead>
                             <tr>
-                                <th style="width: 10%"></th>
-                                <th style="width: 20%">
+                                <th></th>
+                                <th>
                                     <mfDefaultSorter by="name">Name</mfDefaultSorter>
                                 </th>
-                                <th style="width: 40%">
+                                <th>
                                     <mfDefaultSorter by="email">Email</mfDefaultSorter>
                                 </th>
-                                <th style="width: 10%">
+                                <th>
                                     <mfDefaultSorter by="age">Age</mfDefaultSorter>
                                 </th>
-                                <th style="width: 20%">
+                                <th>
                                     <mfDefaultSorter [by]="sortByWordLength">City</mfDefaultSorter>
                                 </th>
                             </tr>
@@ -50,5 +50,6 @@
                     </table>
                 </div>
             </div>
+        <!-- /div -->
 
         

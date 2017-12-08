@@ -1,19 +1,21 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { Http } from "@angular/http";
 import * as _ from "lodash";
 import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { appService } from './user.service';
 import { AppComponent } from './app.component';
+import * as $ from 'jquery';
+import 'datatables.net';
 
 
 @Component({
     selector: 'datatable',
     templateUrl: 'customdatatable.component.html'
 })
-export class ServerComponent implements OnInit  {
+export class ServerComponent implements OnInit, AfterViewInit  {
 public data: any[];
-    public filterQuery = "JJ test 123";
+    public filterQuery = "";
     public rowsOnPage = 10;
     public activePage = 1;
     public sortBy = "email";
@@ -28,8 +30,17 @@ public data: any[];
         this.loadData();
     }
 
+    ngAfterViewInit() {
+        $('#table1').DataTable({
+            "responsive":true,
+            // "scrollX":true,
+            "searching": false, 
+            "paging": false
+        });
+     }
+
+
     public loadData() {
-        console.log(this.filterQuery);
         this.http.get("http://localhost:8080/Rest/V1/GetUsers")
             .subscribe((data) => {
                 setTimeout(() => {
