@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit, AfterViewChecked } from "@angular/core";
 import { Http } from "@angular/http";
 import * as _ from "lodash";
 import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
@@ -23,7 +23,7 @@ public data: any[];
     public sortOrder = "asc";
     public itemsTotal = 0;
     constructor(private http: Http, public _appService: appService) {
-
+       
     }
 
     
@@ -40,6 +40,10 @@ public data: any[];
         // });
      }
 
+     
+    ngAfterViewChecked() {
+     }
+
 
     public loadData() {
         this.http.get("http://localhost:8080/Rest/V1/GetUsers")
@@ -48,7 +52,7 @@ public data: any[];
                     this.data = _.orderBy(data.json(), this.sortBy, [this.sortOrder]);
                     this.data = _.slice(this.data, this.activePage, this.activePage + this.rowsOnPage);
                     this.itemsTotal = data.json().length;
-                }, 1000);
+                }, 200);
             });
     }
     public toInt(num: string) {
@@ -64,7 +68,7 @@ public data: any[];
         // if (index > -1) {
         //     this.data.splice(index, 1);
         // }
-        this._appService.name = item.name;
+        this._appService.name = item.email;
         console.log(this._appService);
         this._appService.closeModal();
     
@@ -76,6 +80,23 @@ public data: any[];
         this.rowsOnPage = event.rowsOnPage;
         this.activePage = event.activePage;
         this.loadData();
+    }
+
+    public startSearch(event){
+        this.http.get("http://localhost:8080/Rest/V1/GetUsers?search="+this.filterQuery)
+        .subscribe((data) => {
+            setTimeout(() => {
+                this.data = _.orderBy(data.json(), this.sortBy, [this.sortOrder]);
+                console.log(this.data);
+                if(this.filterQuery == ''){
+                   this.data = _.slice(this.data, this.activePage, this.activePage + this.rowsOnPage);
+                }
+                console.log(this.data);
+                this.itemsTotal = data.json().length;
+              
+            }, 200);
+        });
+
     }
 
 }

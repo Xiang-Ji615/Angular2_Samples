@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
   title = 'app';
   private _myModal: DialogRef<any>;
   constructor(public modal: Modal, public _appService: appService) { 
-
+  
   }
   
 
