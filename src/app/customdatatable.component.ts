@@ -88,7 +88,8 @@ public data: any[];
             setTimeout(() => {
                 this.data = _.orderBy(data.json(), this.sortBy, [this.sortOrder]);
                 console.log(this.data);
-                if(this.filterQuery == ''){
+                if(this.filterQuery.trim() == ''){
+                   this.activePage=1;
                    this.data = _.slice(this.data, this.activePage, this.activePage + this.rowsOnPage);
                 }
                 console.log(this.data);
