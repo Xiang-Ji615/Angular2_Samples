@@ -42,6 +42,7 @@ public data: any[];
 
      
     ngAfterViewChecked() {
+        $('#focusField').focus();
      }
 
 
@@ -69,7 +70,7 @@ public data: any[];
         //     this.data.splice(index, 1);
         // }
         this._appService.name = item.email;
-        console.log(this._appService);
+        // console.log(this._appService);
         this._appService.closeModal();
     
     }
@@ -83,16 +84,17 @@ public data: any[];
     }
 
     public startSearch(event){
+        console.log(event);
         this.http.get("http://localhost:8080/Rest/V1/GetUsers?search="+this.filterQuery)
         .subscribe((data) => {
             setTimeout(() => {
                 this.data = _.orderBy(data.json(), this.sortBy, [this.sortOrder]);
-                console.log(this.data);
+                // console.log(this.data);
                 if(this.filterQuery.trim() == ''){
                    this.activePage=1;
                    this.data = _.slice(this.data, this.activePage, this.activePage + this.rowsOnPage);
                 }
-                console.log(this.data);
+                // console.log(this.data);
                 this.itemsTotal = data.json().length;
               
             }, 200);

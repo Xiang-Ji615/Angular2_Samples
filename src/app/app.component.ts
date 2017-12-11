@@ -37,6 +37,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.name = this._appService.name;
-    console.log(this._appService);
+    // console.log(this._appService);
   }
 }
