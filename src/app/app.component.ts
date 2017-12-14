@@ -6,8 +6,6 @@ import { appService } from './user.service';
 import { DialogRef } from 'ngx-modialog/src/models/dialog-ref';
 
 
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

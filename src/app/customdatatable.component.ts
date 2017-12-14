@@ -19,7 +19,7 @@ public data: any[];
     public filterQuery = "";
     public rowsOnPage = 10;
     public activePage = 1;
-    public sortBy = "email";
+    public sortBy = "name";
     public sortOrder = "asc";
     public itemsTotal = 0;
     constructor(private http: Http, public _appService: appService) {
@@ -100,6 +100,11 @@ public data: any[];
             }, 200);
         });
 
+    }
+
+    onSelectionChange(item) {
+        this._appService.name = item.email;
+        this._appService.closeModal();
     }
 
 }

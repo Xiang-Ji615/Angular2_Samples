@@ -6,10 +6,10 @@
         
                     <table class="table table-bordered" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
                         [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder" [mfActivePage]="activePage" (mfOnPageChange)="onPageChange($event)"
-                        [mfIsServerPagination]="true" [(mfAmountOfRows)]="itemsTotal" (mfSortOrderChange)="onSortOrder($event)" id="table1">
+                        [mfIsServerPagination]="true" [(mfAmountOfRows)]="itemsTotal" (mfSortOrderChange)="onSortOrder($event)" id="table1" (onSelectionChange)='onSelectionChange($event)'>
                         <thead>
                             <tr>
-                                <th></th>
+                                <!--th></th -->
                                 <th>
                                     <mfDefaultSorter by="name">Name</mfDefaultSorter>
                                 </th>
@@ -31,10 +31,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of mf.data">
-                                <td>
+                            <tr *ngFor="let item of mf.data" (click)='onSelectionChange(item)'>
+                                <!-- td>
                                     <button (click)="remove(item)" class="btn btn-success">Select</button>
-                                </td>
+                                </td -->
                                 <td>{{item.name}}</td>
                                 <td>{{item.email}}</td>
                                 <td class="text-right">{{item.age}}</td>
