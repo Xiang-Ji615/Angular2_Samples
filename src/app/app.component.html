@@ -7,6 +7,14 @@
 </div>
 <button class="btn btn-primary" (click)="onClick()">Alert</button>
 <button class="btn btn-primary" (click)="logService()">Log Service</button>
-<input class="form-control" [(ngModel)]="_appService.name" (keydown.f4)="onClick($event)"/>
-
-
+<div>
+  <label>Name: </label>
+  <input class="form-control" [(ngModel)]="_appService.item.name" (keydown.f4)="onF4($event)" />
+  <label>Email: </label>
+  <input class="form-control" [(ngModel)]="_appService.item.email" />
+  <label>Age: </label>
+  <input class="form-control" [(ngModel)]="_appService.item.age" />
+  <label>City: </label>
+  <input class="form-control" [(ngModel)]="_appService.item.city" />
+  <!-- datatable></datatable -->
+</div>

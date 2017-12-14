@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef, OnInit} from '@angular/core';
+import { Component, ViewContainerRef, OnInit } from '@angular/core';
 import { Overlay, overlayConfigFactory } from 'ngx-modialog';
 import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { ServerComponent } from './customdatatable.component';
@@ -11,33 +11,40 @@ import { DialogRef } from 'ngx-modialog/src/models/dialog-ref';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   name = "";
   title = 'app';
   private _myModal: DialogRef<any>;
-  constructor(public modal: Modal, public _appService: appService) { 
-  
-  }
-  
+  constructor(public modal: Modal, public _appService: appService) {
 
-  onClick(event){
+  }
+
+
+  onClick(event) {
+    // event.preventDefault();
+    // event.stopPropagation();
+    this.modal.open(ServerComponent, overlayConfigFactory({})).then(dialog => {
+      this._myModal = dialog;
+      this._appService.myModal = dialog;
+    });
+  }
+
+  onF4(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.modal.open(ServerComponent, overlayConfigFactory({})).then( dialog => {
-    this._myModal = dialog;
-    this._appService.myModal = dialog;
-  });
+    this.modal.open(ServerComponent, overlayConfigFactory({})).then(dialog => {
+      this._myModal = dialog;
+      this._appService.myModal = dialog;
+    });
   }
 
- 
-
-  logService(){
+  logService() {
     console.log(this._appService);
     console.log(this.name);
   }
 
   ngOnInit(): void {
-    this.name = this._appService.name;
+    this.name = this._appService.userModel.name;
     // console.log(this._appService);
   }
 }

@@ -38,11 +38,12 @@ public data: any[];
         //     "searching": false, 
         //     "paging": false
         // });
+        $('#focusField').focus();
      }
 
      
     ngAfterViewChecked() {
-        $('#focusField').focus();
+       
      }
 
 
@@ -69,7 +70,10 @@ public data: any[];
         // if (index > -1) {
         //     this.data.splice(index, 1);
         // }
-        this._appService.name = item.email;
+        this._appService.userModel.name = item.email;
+        this._appService.userModel.age = item.agel;
+        this._appService.userModel.city = item.city;
+        this._appService.userModel.name = item.name;
         // console.log(this._appService);
         this._appService.closeModal();
     
@@ -103,7 +107,7 @@ public data: any[];
     }
 
     onSelectionChange(item) {
-        this._appService.name = item.email;
+        this._appService.item = item;
         this._appService.closeModal();
     }
 
