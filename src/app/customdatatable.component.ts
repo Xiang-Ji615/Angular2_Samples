@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-responsive';
+import { isDefaultChangeDetectionStrategy } from "@angular/core/src/change_detection/constants";
 
 
 @Component({
@@ -22,6 +23,7 @@ public data: any[];
     public sortBy = "name";
     public sortOrder = "asc";
     public itemsTotal = 0;
+    public isHidden = null;
     constructor(private http: Http, public _appService: appService) {
        
     }
@@ -99,7 +101,7 @@ public data: any[];
                    this.activePage=1;
                    this.itemsTotal = data.json().length;
                    this.data = _.slice(this.data, this.activePage, this.activePage + this.rowsOnPage);
-                 
+                   this.isHidden = null;
                 }
                 // console.log(this.data);
                 else{
@@ -107,6 +109,7 @@ public data: any[];
                     console.log(data.json());
                     this.itemsTotal = data.json().length;
                     this.rowsOnPage = data.json().length;
+                    this.isHidden = true;
                 }
               
             }, 200);
