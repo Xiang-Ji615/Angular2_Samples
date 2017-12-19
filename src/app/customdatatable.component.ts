@@ -97,6 +97,7 @@ public data: any[];
                 if(this.filterQuery.trim() == ''){
                    this.rowsOnPage = 10;
                    this.activePage=1;
+                   this.itemsTotal = data.json().length;
                    this.data = _.slice(this.data, this.activePage, this.activePage + this.rowsOnPage);
                  
                 }
