@@ -48,7 +48,7 @@ public data: any[];
 
 
     public loadData() {
-        this.http.get("http://localhost:8080/Rest/V1/GetUsers")
+        this.http.get("http://localhost:9090/Rest/V1/GetUsers")
             .subscribe((data) => {
                 setTimeout(() => {
                     this.data = _.orderBy(data.json(), this.sortBy, [this.sortOrder]);
@@ -89,17 +89,24 @@ public data: any[];
 
     public startSearch(event){
         console.log(event);
-        this.http.get("http://localhost:8080/Rest/V1/GetUsers?search="+this.filterQuery)
+        this.http.get("http://localhost:9090/Rest/V1/GetUsers?search="+this.filterQuery)
         .subscribe((data) => {
             setTimeout(() => {
                 this.data = _.orderBy(data.json(), this.sortBy, [this.sortOrder]);
                 // console.log(this.data);
                 if(this.filterQuery.trim() == ''){
+                   this.rowsOnPage = 10;
                    this.activePage=1;
                    this.data = _.slice(this.data, this.activePage, this.activePage + this.rowsOnPage);
+                 
                 }
                 // console.log(this.data);
-                this.itemsTotal = data.json().length;
+                else{
+                    this.activePage=1;
+                    console.log(data.json());
+                    this.itemsTotal = data.json().length;
+                    this.rowsOnPage = data.json().length;
+                }
               
             }, 200);
         });
